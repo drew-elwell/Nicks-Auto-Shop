@@ -1,57 +1,5 @@
 import Link from 'next/link';
-import { 
-  Wrench, 
-  Droplet, 
-  Settings, 
-  Gauge, 
-  Battery, 
-  Car, 
-  Wind, 
-  Wrench as WrenchIcon 
-} from 'lucide-react';
-
-const services = [
-  {
-    icon: Wrench,
-    title: "Brake Repair",
-    description: "Full brake service including pads, rotors, hydraulics, and complete system diagnostics for safe stopping power.",
-  },
-  {
-    icon: Droplet,
-    title: "Oil Change & Lube",
-    description: "Fast, reliable oil and filter changes with fluid top-off to keep your engine running smoothly.",
-  },
-  {
-    icon: Car,
-    title: "Wheel Alignment",
-    description: "Precision alignment services for improved ride comfort, handling, and extended tire life.",
-  },
-  {
-    icon: Battery,
-    title: "Engine Diagnostics",
-    description: "Advanced computer diagnostics and expert repairs for major and minor engine issues.",
-  },
-  {
-    icon: Wind,
-    title: "Air Conditioning",
-    description: "Complete AC diagnostics, recharge, and repair services to keep you cool in Colorado summers.",
-  },
-  {
-    icon: Settings,
-    title: "Exhaust Systems",
-    description: "Expert exhaust system replacement, repair, and performance upgrades for optimal efficiency.",
-  },
-  {
-    icon: Gauge,
-    title: "Electrical & Battery Service",
-    description: "Vehicle electrical diagnostics, battery testing and replacement, lighting repairs and full wiring checks.",
-  },
-  {
-    icon: WrenchIcon,
-    title: "Preventative Maintenance",
-    description: "Complete maintenance services including belts & hoses, filters, fluid changes, and scheduled service plans.",
-  },
-];
+import { services } from '@/data/services';
 
 export default function ServicesGrid() {
   return (
@@ -81,10 +29,10 @@ export default function ServicesGrid() {
                   {service.title}
                 </h3>
                 <p className="text-text-gray mb-4 leading-relaxed">
-                  {service.description}
+                  {service.shortDescription}
                 </p>
                 <Link
-                  href="/services"
+                  href={`/services/${service.slug}`}
                   className="text-orange font-semibold hover:text-orange/80 transition-colors inline-flex items-center space-x-1"
                 >
                   <span>Learn More</span>

@@ -9,12 +9,12 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-dark-blue text-white sticky top-0 z-50 shadow-lg">
+    <header className="bg-[#071E3D] text-white sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Logo size="md" showText={true} textColor="text-white" />
+            <Logo size="md" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -49,7 +49,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-dark-blue border-t border-white/20">
+        <div className="md:hidden bg-[#071E3D] border-t border-white/20">
           <div className="px-4 py-4 space-y-4">
             <Link href="/" className="block hover:text-orange transition-colors" onClick={() => setMobileMenuOpen(false)}>Home</Link>
             <Link href="/about-us" className="block hover:text-orange transition-colors" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
