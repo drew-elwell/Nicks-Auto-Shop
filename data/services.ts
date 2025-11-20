@@ -25,8 +25,7 @@ export const services: ServiceDetail[] = [
     slug: 'brake-repair',
     title: 'Brake Repair',
     icon: Wrench,
-    shortDescription:
-      'Full brake service including pads, rotors, hydraulics, and diagnostics for confident stopping power.',
+    shortDescription: 'Pads, rotors, and hydraulics dialed in so you stop straight and quiet.',
     longDescription:
       'Your brakes are the most important safety system on your vehicle. We use premium parts, precision machining, and ASE-certified technicians to restore factory braking performance and stop squeals, vibrations, or warning lights.',
     servicesOffered: [
@@ -46,10 +45,9 @@ export const services: ServiceDetail[] = [
   },
   {
     slug: 'oil-change-lube',
-    title: 'Oil Change & Lube',
+    title: 'Oil Change',
     icon: Droplet,
-    shortDescription:
-      'Fast, reliable oil and filter changes with complete multi-point inspections and fluid top-offs.',
+    shortDescription: 'Fresh oil, new filters, and a quick inspection to keep the engine happy.',
     longDescription:
       'Regular oil changes are the easiest way to protect your engine. We stock OEM-approved fluids, reset maintenance reminders, and provide a full inspection so you always know the health of your vehicle.',
     servicesOffered: [
@@ -70,8 +68,7 @@ export const services: ServiceDetail[] = [
     slug: 'wheel-alignment',
     title: 'Wheel Alignment',
     icon: Car,
-    shortDescription:
-      'Precision alignment services for better ride comfort, handling, and extended tire life.',
+    shortDescription: 'Laser alignment for a centered steering wheel and longer-lasting tires.',
     longDescription:
       'Colorado roads can knock even the toughest suspension out of spec. Our digital alignment rack calibrates your vehicle to exact factory measurements for a smooth ride and even tire wear.',
     servicesOffered: [
@@ -92,8 +89,7 @@ export const services: ServiceDetail[] = [
     slug: 'engine-diagnostics',
     title: 'Engine Diagnostics',
     icon: Battery,
-    shortDescription:
-      'Advanced computer diagnostics paired with expert technicians to solve any drivability issue.',
+    shortDescription: 'Factory-level scan tools that uncover check-engine lights and drivability issues.',
     longDescription:
       'Modern vehicles require precise data to pinpoint engine problems. We combine factory scan tools, lab scopes, and real-world testing to identify the root cause before recommending repairs.',
     servicesOffered: [
@@ -115,8 +111,7 @@ export const services: ServiceDetail[] = [
     slug: 'air-conditioning',
     title: 'Air Conditioning',
     icon: Wind,
-    shortDescription:
-      'Complete AC diagnostics, recharge, leak detection, and repairs to keep you cool all summer.',
+    shortDescription: 'Leak checks, recharge, and repairs that bring back crisp, cold air.',
     longDescription:
       'From warm air to odd smells, our AC specialists handle everything from refrigerant leaks to electronic climate controls so you stay comfortable year-round.',
     servicesOffered: [
@@ -137,8 +132,7 @@ export const services: ServiceDetail[] = [
     slug: 'exhaust-systems',
     title: 'Exhaust Systems',
     icon: Settings,
-    shortDescription:
-      'Expert exhaust replacement, repair, and performance upgrades for sound, safety, and efficiency.',
+    shortDescription: 'Quiet, safe exhaust systems—whether you need a simple fix or full upgrade.',
     longDescription:
       'Whether you need a quiet commute or more performance, we fabricate, weld, and install exhaust components that keep emissions in check and sound just right.',
     servicesOffered: [
@@ -160,8 +154,7 @@ export const services: ServiceDetail[] = [
     slug: 'electrical-battery',
     title: 'Electrical & Battery Service',
     icon: Gauge,
-    shortDescription:
-      'Complete electrical diagnostics, battery testing, and wiring repairs for modern vehicles.',
+    shortDescription: 'Electrical testing, battery swaps, and wiring repairs that prevent no-starts.',
     longDescription:
       'Today’s vehicles rely on complex electrical networks. We isolate parasitic drains, repair wiring, and install OEM-quality batteries so every system powers on when you need it.',
     servicesOffered: [
@@ -182,8 +175,7 @@ export const services: ServiceDetail[] = [
     slug: 'preventative-maintenance',
     title: 'Preventative Maintenance',
     icon: Wrench,
-    shortDescription:
-      'Scheduled maintenance plans covering belts, hoses, filters, fluids, and inspections to keep you on the road.',
+    shortDescription: 'Belts, hoses, filters, and fluids handled on schedule to avoid surprises.',
     longDescription:
       'Staying ahead of the factory maintenance schedule prevents breakdowns. We build personalized plans around how and where you drive in Colorado.',
     servicesOffered: [

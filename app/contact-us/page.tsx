@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Phone, MapPin, Clock, Mail } from 'lucide-react';
+import { Phone, MapPin, Clock } from 'lucide-react';
+import { services } from '@/data/services';
+import { BUSINESS_INFO } from '@/lib/constants';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -13,12 +15,28 @@ export default function ContactPage() {
     service: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
+    setIsSubmitting(true);
+    
+    // TODO: Implement actual form submission (API route, email service, etc.)
+    // For now, simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    
     console.log('Form submitted:', formData);
     alert('Thank you for your message! We will get back to you soon.');
+    
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      service: '',
+      message: '',
+    });
+    setIsSubmitting(false);
   };
 
   return (
@@ -52,33 +70,37 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-bold text-dark-blue mb-1">Address</h3>
                     <p className="text-text-gray">
-                      2800 Moorhead Ave<br />
-                      Boulder, CO 80305
+                      {BUSINESS_INFO.address.street}<br />
+                      {BUSINESS_INFO.address.city}, {BUSINESS_INFO.address.state} {BUSINESS_INFO.address.zip}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-orange rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-orange rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">
                     <Phone className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3 className="font-bold text-dark-blue mb-1">Phone</h3>
-                    <a href="tel:3034994300" className="text-text-gray hover:text-orange transition-colors">
-                      (303) 499-4300
+                    <a
+                      href={`tel:${BUSINESS_INFO.phoneRaw}`}
+                      className="text-text-gray hover:text-orange transition-colors"
+                      aria-label={`Call ${BUSINESS_INFO.name} at ${BUSINESS_INFO.phone}`}
+                    >
+                      {BUSINESS_INFO.phone}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-orange rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-orange rounded-lg flex items-center justify-center flex-shrink-0" aria-hidden="true">
                     <Clock className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3 className="font-bold text-dark-blue mb-1">Hours</h3>
                     <p className="text-text-gray">
-                      Monday - Friday: 8:00 AM - 5:00 PM<br />
-                      Saturday - Sunday: Closed
+                      {BUSINESS_INFO.hours.weekdaysFull}<br />
+                      {BUSINESS_INFO.hours.weekendsFull}
                     </p>
                   </div>
                 </div>
@@ -87,7 +109,7 @@ export default function ContactPage() {
               {/* Map */}
               <div className="rounded-lg overflow-hidden shadow-lg">
                 <iframe
-                  src="https://www.google.com/maps?q=2800+Moorhead+Ave,+Boulder,+CO+80305&output=embed"
+                  src={`https://www.google.com/maps?q=${BUSINESS_INFO.address.googleMaps}&output=embed`}
                   width="100%"
                   height="300"
                   style={{ border: 0 }}
@@ -95,7 +117,8 @@ export default function ContactPage() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full"
-                  title="Nick's Auto Repair Location - 2800 Moorhead Ave, Boulder, CO 80305"
+                  title={`${BUSINESS_INFO.name} Location - ${BUSINESS_INFO.address.full}`}
+                  aria-label="Map showing business location"
                 ></iframe>
               </div>
             </div>
@@ -154,16 +177,14 @@ export default function ContactPage() {
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange focus:border-transparent outline-none"
+                    aria-label="Select a service"
                   >
                     <option value="">Select a service</option>
-                    <option value="brake">Brake Repair</option>
-                    <option value="oil">Oil Change</option>
-                    <option value="alignment">Wheel Alignment</option>
-                    <option value="diagnostics">Engine Diagnostics</option>
-                    <option value="ac">Air Conditioning</option>
-                    <option value="exhaust">Exhaust Systems</option>
-                    <option value="electrical">Electrical & Battery</option>
-                    <option value="maintenance">Preventative Maintenance</option>
+                    {services.map((service) => (
+                      <option key={service.slug} value={service.slug}>
+                        {service.title}
+                      </option>
+                    ))}
                     <option value="other">Other</option>
                   </select>
                 </div>
@@ -184,9 +205,11 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-orange text-white px-8 py-4 rounded-lg hover:bg-orange/90 transition-colors font-semibold text-lg"
+                  disabled={isSubmitting}
+                  className="w-full bg-orange text-white px-8 py-4 rounded-lg hover:bg-orange/90 transition-colors font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Submit contact form"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>

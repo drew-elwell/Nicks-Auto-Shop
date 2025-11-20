@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { BUSINESS_INFO } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Nick's Auto Repair | Trusted Auto Repair in Boulder, CO",
-  description: "Family-owned auto repair shop in Boulder, CO since 1977. ASE-certified technicians providing honest, professional service for all foreign & domestic vehicles.",
+  title: `${BUSINESS_INFO.name} | Trusted Auto Repair in Boulder, CO`,
+  description: `Family-owned auto repair shop in Boulder, CO since ${BUSINESS_INFO.founded}. ASE-certified technicians providing honest, professional service for all foreign & domestic vehicles.`,
 };
 
 export default function RootLayout({

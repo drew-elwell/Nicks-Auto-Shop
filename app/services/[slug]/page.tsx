@@ -1,8 +1,10 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import { getServiceBySlug, services } from '@/data/services';
 import { notFound } from 'next/navigation';
+import { BUSINESS_INFO } from '@/lib/constants';
 
 type ServicePageProps = {
   params: {
@@ -14,6 +16,21 @@ export function generateStaticParams() {
   return services.map((service) => ({
     slug: service.slug,
   }));
+}
+
+export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
+  const service = getServiceBySlug(params.slug);
+  
+  if (!service) {
+    return {
+      title: `Service Not Found | ${BUSINESS_INFO.name}`,
+    };
+  }
+
+  return {
+    title: `${service.title} | ${BUSINESS_INFO.name}`,
+    description: service.shortDescription,
+  };
 }
 
 export default function ServiceDetailPage({ params }: ServicePageProps) {

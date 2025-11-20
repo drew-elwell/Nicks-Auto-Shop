@@ -1,56 +1,21 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import ServicesGrid from '@/components/ServicesGrid';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import { services } from '@/data/services';
+import { servicePackages, processSteps } from '@/data/servicePage';
+import { FEATURED_SERVICES_COUNT, BUSINESS_INFO } from '@/lib/constants';
+
+export const metadata: Metadata = {
+  title: `Services | ${BUSINESS_INFO.name}`,
+  description:
+    'Complete auto services from routine maintenance to major repairs. Brake repair, oil changes, engine diagnostics, wheel alignment, AC service, and more.',
+};
 
 export default function ServicesPage() {
-  const featuredServices = services.slice(0, 3);
-
-  const servicePackages = [
-    {
-      title: 'Maintenance & Fluids',
-      description:
-        'Keep factory warranties intact with scheduled oil changes, filter replacements, coolant and transmission service, and digital inspection reports.',
-      items: ['Oil Change & Lube', 'Preventative Maintenance', 'Fluid Flushes'],
-    },
-    {
-      title: 'Diagnostics & Repair',
-      description:
-        'Solve warning lights, drivability issues, and electrical problems using OEM-level scan tools, lab scopes, and years of local experience.',
-      items: ['Engine Diagnostics', 'Electrical & Battery', 'Brake Repair'],
-    },
-    {
-      title: 'Comfort & Performance',
-      description:
-        'Make every drive a good one with precise alignments, AC service, and exhaust work tailored to Colorado roads and emissions standards.',
-      items: ['Wheel Alignment', 'Air Conditioning', 'Exhaust Systems'],
-    },
-  ];
-
-  const processSteps = [
-    {
-      title: 'Listen & Inspect',
-      detail:
-        'We start with a road test (when appropriate), discuss your concerns, and capture photos during a 35-point inspection.',
-    },
-    {
-      title: 'Diagnose & Quote',
-      detail:
-        'ASE-certified techs confirm the root cause, then send you a digital estimate with priority levels so you can make informed decisions.',
-    },
-    {
-      title: 'Repair & Verify',
-      detail:
-        'Work is performed with OEM-quality parts, torque specs, and verification tests. We keep you updated via text throughout the repair.',
-    },
-    {
-      title: 'Deliver & Support',
-      detail:
-        'You get a clean vehicle, detailed invoice, and nationwide warranty coverage. We follow up after a few days to make sure everything feels perfect.',
-    },
-  ];
+  const featuredServices = services.slice(0, FEATURED_SERVICES_COUNT);
 
   return (
     <main className="min-h-screen">
@@ -60,7 +25,7 @@ export default function ServicesPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="uppercase tracking-[0.2em] text-sm text-orange font-semibold">
-                Boulder’s Complete Shop Since 1977
+                Boulder&apos;s Complete Shop Since {BUSINESS_INFO.founded}
               </p>
               <h1 className="text-4xl md:text-5xl font-bold text-dark-blue mt-4 mb-6">
                 All-in-one auto care for every stage of vehicle ownership.
@@ -78,10 +43,11 @@ export default function ServicesPage() {
                   Book an Appointment
                 </Link>
                 <a
-                  href="tel:3034994300"
+                  href={`tel:${BUSINESS_INFO.phoneRaw}`}
                   className="bg-white text-dark-blue px-8 py-3 rounded-lg font-semibold text-center hover:bg-gray-100 transition-colors border border-dark-blue/10"
+                  aria-label={`Call ${BUSINESS_INFO.name} at ${BUSINESS_INFO.phone}`}
                 >
-                  Call (303) 499-4300
+                  Call {BUSINESS_INFO.phone}
                 </a>
               </div>
             </div>
